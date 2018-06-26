@@ -1,5 +1,14 @@
 FROM neurodebian:artful-non-free
 
+#####################################################
+#                                                   #
+# MCIN (McGill Centre for Integrative Neuroscience) #
+#                                                   #
+# Singularity recipe for FSL to build a container   #
+# used in CBRAIN (https://github.com/aces/cbrain)   #
+#                                                   #
+#####################################################
+
 RUN apt-get update
 RUN apt-get install -y fsl-complete
 

@@ -1,11 +1,20 @@
 Bootstrap: docker
 From: neurodebian:artful-non-free
 
+#####################################################
+#                                                   #
+# MCIN (McGill Centre for Integrative Neuroscience) #
+#                                                   #
+# Singularity recipe for FSL to build a container   #
+# used in CBRAIN (https://github.com/aces/cbrain)   #
+#                                                   #
+#####################################################
+
 %labels
   Maintainer Natacha Beck
 
 %help
-This container execute any fsl-core command it contain all the fsl data too. 
+This container executes any fsl-core command, and it contain all the fsl data too. 
 For more information see FSL website: https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
 
 %post
