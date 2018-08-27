@@ -15,7 +15,7 @@ From: neurodebian:artful-non-free
   Maintainer Natacha Beck
 
 %help
-This container provides 'dcm2nii'i from the mricron package.
+This container provides 'dcm2nii' from the mricron package.
 That supports converting DICOM and PAR/REC images into the NIfTI format. 
 http://people.cas.sc.edu/rorden/mricron/index.html  
 
