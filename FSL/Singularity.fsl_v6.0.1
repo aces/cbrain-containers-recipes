@@ -18,7 +18,7 @@ For more information see FSL website: https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
 
 %post
   apt-get update
-  apt-get install -y python curl file build-essential tcl libpng12-dev libmng-dev bzip2 sudo perl
+  apt-get install -y python wget curl file build-essential tcl libpng12-dev libmng-dev bzip2 sudo perl
   curl -O https://fsl.fmrib.ox.ac.uk/fsldownloads/fslinstaller.py 
   chmod 755 fslinstaller.py 
   su -c "python ./fslinstaller.py -D -E -d /usr/local/fsl --fslversion 6.0.1"
