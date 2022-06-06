@@ -12,7 +12,20 @@ WORKDIR   /opt/fsl_install
 RUN wget https://fsl.fmrib.ox.ac.uk/fsldownloads/fslinstaller.py 
 RUN wget https://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-6.0.5-centos7_64.tar.gz
 
-# Modify order of channels in python env
+#
+# The installation gets stuck on stage2,
+# due to some issue when fetching the SAT python package.
+#
+# This is documented in: 
+# - https://stackoverflow.com/questions/56262012/conda-install-takes-forever-stuck-as-sat-solver
+# 
+# The solution is:
+#   - Download the fsl-6.0.5-centos7_64.tar.gz.
+#   - Extract the *.yml that defines the python env. 
+#   - Switch the order of the channels (as describe on the stackoverflow solution).
+#   - Replace the *.yml file by the new one in the tar file.
+#   - Run the installer with the new fsl-6.0.5-centos7_64.tar.gz.
+#
 RUN gunzip fsl-6.0.5-centos7_64.tar.gz
 RUN tar -xvf fsl-6.0.5-centos7_64.tar fsl/etc/fslconf/fslpython_environment.yml
 RUN sed -i '/ - defaults/d'  fsl/etc/fslconf/fslpython_environment.yml
