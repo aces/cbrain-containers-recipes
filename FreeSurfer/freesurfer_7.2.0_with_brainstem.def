@@ -20,7 +20,7 @@ from: freesurfer/freesurfer:7.2.0
 %labels
     Author               pierre.rioux@mcgill.ca
     Version              v1.0.0
-    FreesurferVersion    0.11.2
+    FreesurferVersion    7.2.0
     MatlabRuntimeVersion R2014b
 
 %help
