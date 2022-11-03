@@ -1,0 +1,28 @@
+#
+# Singularity definition file for Freesurfer 7.2.0 with
+# the optional brainstem module support
+# Pierre Rioux, pierre.rioux@mcgill.ca, Nov 2022
+#
+
+bootstrap: docker
+from: freesurfer/freesurfer:7.2.0
+
+%post
+    # Upgrade all packages
+    yum update -y
+    yum upgrade -y
+    yum install -y zip unzip
+
+    # Install Matlab runtime
+    fs_install_mcr R2014b
+
+
+%labels
+    Author               pierre.rioux@mcgill.ca
+    Version              v1.0.0
+    FreesurferVersion    0.11.2
+    MatlabRuntimeVersion R2014b
+
+%help
+    This container provides Freesurfer 7.2.0 along with the optional brainstem module.
+
