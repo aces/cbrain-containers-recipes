@@ -1,0 +1,28 @@
+FROM fnndsc/fsl:6.0.5.1-cuda9.1
+
+# Install git
+RUN yum install -y git
+
+# mkdir and cd to  /git
+RUN mkdir /git
+WORKDIR   /git
+
+# Git  clone wrappers
+RUN git clone https://github.com/natacha-beck/mcflirt_bids.git
+RUN git clone https://github.com/natacha-beck/oxford_bids.git
+
+# mkdir /wrappers 
+RUN mkdir /wrappers
+WORKDIR   /wrappers
+
+# Copy or clone 
+RUN cp /git/mcflirt_bids/mcflirt/bids_mcflirt .
+RUN cp /git/oxford_bids/bids_ox_asl           .
+RUN chmod a+x /wrappers/*
+
+# Add wrappers to path
+ENV PATH="/wrappers:${PATH}"
+
+# Run as non-root user
+RUN useradd cbrain_user
+USER cbrain_user
