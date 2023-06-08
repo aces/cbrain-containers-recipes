@@ -1,28 +1,20 @@
 FROM fnndsc/fsl:6.0.5.1-cuda9.1
 
-# Install git
-RUN yum install -y git
+# Before to perform Docker build the wrappers should 
+# be extract in the local context. 
+# 
+# Wrappers bids_mcflirt and oxford_bids came from:   
+#   - https://github.com/natacha-beck/mcflirt_bids.git
+#   - https://github.com/natacha-beck/oxford_bids.git
 
-# mkdir and cd to  /git
-RUN mkdir /git
-WORKDIR   /git
+# Copy wrappers
+COPY mcflirt_bids/mcflirt/bids_mcflirt /bin
+COPY oxford_bids/bids_ox_asl           /bin
 
-# Git  clone wrappers
-RUN git clone https://github.com/natacha-beck/mcflirt_bids.git
-RUN git clone https://github.com/natacha-beck/oxford_bids.git
-
-# mkdir /wrappers 
-RUN mkdir /wrappers
-WORKDIR   /wrappers
-
-# Copy or clone 
-RUN cp /git/mcflirt_bids/mcflirt/bids_mcflirt .
-RUN cp /git/oxford_bids/bids_ox_asl           .
-RUN chmod a+x /wrappers/*
-
-# Add wrappers to path
-ENV PATH="/wrappers:${PATH}"
+# Make wrappers executable  
+RUN chmod a+x /bin/bids_mcflirt /bin/bids_ox_asl
 
 # Run as non-root user
 RUN useradd cbrain_user
 USER cbrain_user
+
